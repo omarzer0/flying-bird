@@ -15,10 +15,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 
 public class GameView extends View {
 
+    // context
+    Context mContext;
     // Canvas
     private int canvasWidth;
     private int canvasHeight;
@@ -58,6 +59,8 @@ public class GameView extends View {
 
     public GameView(Context context) {
         super(context);
+        mContext = context;
+
         bird[0] = BitmapFactory.decodeResource(getResources(), R.drawable.bird1);
         bird[1] = BitmapFactory.decodeResource(getResources(), R.drawable.bird2);
 
@@ -141,6 +144,8 @@ public class GameView extends View {
             if (lifeCount == 0){
                 // GameOver
                 Toast.makeText(getContext(), "Game Over", Toast.LENGTH_SHORT).show();
+                MainActivity activity = (MainActivity) mContext;
+                activity.timer.cancel();
             }
         }
         if (blackX < 0 ){

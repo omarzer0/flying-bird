@@ -10,8 +10,8 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     private GameView gameView;
-    private Handler handler = new Handler();
     private final static long TIME_INTERVAL = 30;
+    public Timer timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         gameView = new GameView(this);
         setContentView(gameView);
 
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
